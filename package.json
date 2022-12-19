@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:staged": "npm t -- --findRelatedTests",
+    "test:ci": "npm t -- --coverage",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky install"
