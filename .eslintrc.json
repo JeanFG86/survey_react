@@ -10,6 +10,7 @@
     "@typescript-eslint/no-unnecessary-type-assertion": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
     "import/export": "off",
     "@typescript-eslint/space-before-blocks": "off"
   }

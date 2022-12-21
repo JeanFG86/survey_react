@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/faker": "^6.6.9",
+    "@types/faker": "^5.5.3",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
