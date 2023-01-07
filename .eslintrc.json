@@ -12,6 +12,10 @@
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "off",
     "import/export": "off",
-    "@typescript-eslint/space-before-blocks": "off"
+    "@typescript-eslint/space-before-blocks": "off",
+    "space-before-function-paren": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": "off"
   }
 }
