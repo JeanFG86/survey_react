@@ -9,7 +9,7 @@
     "plugin:react/recommended"
   ],
    "plugins": ["react"],
-  "parserOptions": {
+   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "rules": {
