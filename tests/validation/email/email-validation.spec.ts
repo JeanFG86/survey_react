@@ -1,17 +1,5 @@
-import { FieldValidation } from '@/validation/protocols'
-
-class EmailValidation implements FieldValidation {
-  constructor(readonly field: string) {}
-  validate(value: string): Error {
-    return new InvalidFieldError()
-  }
-}
-
-class InvalidFieldError extends Error {
-  constructor() {
-    super('valor inválido')
-  }
-}
+import { InvalidFieldError } from '@/validation/errors'
+import { EmailValidation } from '@/validation/email'
 
 describe('EmailValidation', () => {
   it('Should return error if email is invalid', () => {
