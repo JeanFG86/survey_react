@@ -1,12 +1,6 @@
-import { SetStorage } from '@/data/protocols/cache'
+import { LocalStorageAdapter } from '@/infra/cache'
 import faker from 'faker'
 import 'jest-localstorage-mock'
-
-class LocalStorageAdapter implements SetStorage {
-  async set(key: string, value: any): Promise<void> {
-    localStorage.setItem(key, value)
-  }
-}
 
 describe('LocalStorageAdapter', () => {
   beforeEach(() => {
