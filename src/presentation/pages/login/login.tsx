@@ -3,15 +3,16 @@ import Styles from './login-styles.scss'
 import { Header, Footer, Input, FormStatus } from '@/presentation/components'
 import Context from '@/presentation/context/form/form-context'
 import { Validation } from '@/presentation/protocols'
-import { Authentication } from '@/domain/usecases'
+import { Authentication, SaveAccessToken } from '@/domain/usecases'
 import { Link, useHistory } from 'react-router-dom'
 
 type Props = {
   validation?: Validation
   authentication?: Authentication
+  saveAccessToken?: SaveAccessToken
 }
 
-const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -36,7 +37,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       }
       setState({ ...state, isLoading: true })
       const account = await authentication.auth({ email: state.email, password: state.password })
-      localStorage.setItem('accessToken', account.accessToken)
+      await saveAccessToken.save(account.accessToken)
       history.replace('/')
     } catch (error) {
       setState({ ...state, isLoading: false, mainError: error.message })
@@ -61,5 +62,3 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 }
 
 export default Login
-
-// TESTAR MUDANDO A VERSAO DO REACT E TAL E FAZER O NPM RUN TEST, SE FUNCIONAR IR COLOCANDO OQ FALTA
