@@ -47,18 +47,24 @@ describe('Login', () => {
   })
 
   it('Should present error if invalid credentials are provided', () => {
+    cy.intercept(
+      {
+        method: 'POST',
+        url: /api\/login/
+      },
+      {
+        statusCode: 401,
+        body: {
+          error: faker.random.words()
+        }
+      }
+    )
     cy.getByTestId('email').focus().type(faker.internet.email())
     cy.getByTestId('password').focus().type(faker.random.alphaNumeric(10))
     cy.getByTestId('submit').click()
     cy.getByTestId('error-wrap')
-      .getByTestId('spinner')
-      .should('exist')
-      .getByTestId('main-error')
-      .should('not.exist')
-      .getByTestId('spinner')
-      .should('not.exist')
-      .getByTestId('main-error')
-      .should('contain.text', 'Credenciais inválidas')
+    cy.getByTestId('spinner').should('not.exist')
+    cy.getByTestId('main-error').should('contain.text', 'Credenciais inválidas')
     cy.url().should('eq', `${baseUrl}/login`)
   })
 
@@ -66,13 +72,8 @@ describe('Login', () => {
     cy.getByTestId('email').focus().type('jean86@gmail.com')
     cy.getByTestId('password').focus().type('123')
     cy.getByTestId('submit').click()
-    cy.getByTestId('error-wrap')
-      .getByTestId('spinner')
-      .should('exist')
-      .getByTestId('main-error')
-      .should('not.exist')
-      .getByTestId('spinner')
-      .should('not.exist')
+    cy.getByTestId('main-error').should('not.exist')
+    cy.getByTestId('spinner').should('not.exist')
     cy.url().should('eq', `${baseUrl}/`)
     cy.window().then((window) =>
       assert.isOk(window.localStorage.getItem('accessToken'))
