@@ -70,8 +70,10 @@ describe('Login', () => {
 
   it('Should save accessToken if valid credentials are provided', () => {
     cy.getByTestId('email').focus().type(faker.internet.email())
-    cy.getByTestId('password').focus().type(faker.random.alphaNumeric(3))
-    cy.getByTestId('submit').click()
+    cy.getByTestId('password')
+      .focus()
+      .type(faker.random.alphaNumeric(3))
+      .type('{enter}')
     cy.getByTestId('main-error').should('not.exist')
     cy.getByTestId('spinner').should('not.exist')
     cy.url().should('eq', `${baseUrl}/`)
