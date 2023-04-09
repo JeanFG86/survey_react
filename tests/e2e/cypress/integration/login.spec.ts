@@ -8,10 +8,10 @@ describe('Login', () => {
   })
 
   it('Should load with correct initial state', () => {
-    cy.getByTestId('email').should('have.attr', 'readOnly')
+    cy.getByTestId('email-wrap').should('have.attr', 'data-status', 'invalid')
     cy.getByTestId('email-status')
       .should('have.attr', 'title', 'Campo obrigatório ')
-      .should('contain.text', '🔴')
+      .should('have.attr', 'readOnly')
     cy.getByTestId('password').should('have.attr', 'readOnly')
     cy.getByTestId('password-status')
       .should('have.attr', 'title', 'Campo obrigatório ')
