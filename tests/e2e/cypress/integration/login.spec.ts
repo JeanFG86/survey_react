@@ -1,4 +1,5 @@
 import faker from 'faker'
+import * as FormHelper from '../utils/form-helpers'
 
 const baseUrl: string = Cypress.config().baseUrl
 
@@ -8,14 +9,10 @@ describe('Login', () => {
   })
 
   it('Should load with correct initial state', () => {
-    cy.getByTestId('email-wrap').should('have.attr', 'data-status', 'invalid')
-    cy.getByTestId('email-status')
-      .should('have.attr', 'title', 'Campo obrigatório ')
-      .should('have.attr', 'readOnly')
+    cy.getByTestId('email').should('have.attr', 'readOnly')
+    FormHelper.testInputStatus('email', 'Campo obrigatório ')
     cy.getByTestId('password').should('have.attr', 'readOnly')
-    cy.getByTestId('password-status')
-      .should('have.attr', 'title', 'Campo obrigatório ')
-      .should('contain.text', '🔴')
+    FormHelper.testInputStatus('password', 'Campo obrigatório ')
     cy.getByTestId('submit').should('have.attr', 'disabled')
     cy.getByTestId('error-wrap').should('not.have.descendants')
   })
