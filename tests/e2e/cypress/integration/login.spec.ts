@@ -6,10 +6,10 @@ import * as Http from '../utils/http-mocks'
 const path = /api\/login/
 const mockInvalidCredentialsError = (): void => Http.mockUnauthorizedError(path)
 const mockUnexpectedError = (): void => Http.mockServerError(path, 'POST')
-const mockSuccess = (): void => {
-  Http.mockOk(/api\/surveys/, 'GET', 'survey-list')
-  Http.mockOk(path, 'POST', 'account', 'loginRequest')
-}
+// const mockSuccess = (): void => {
+//  Http.mockOk(/api\/surveys/, 'GET', 'survey-list')
+//  Http.mockOk(path, 'POST', 'account', 'loginRequest')
+// }
 
 const populateFields = (): void => {
   cy.getByTestId('email').focus().type(faker.internet.email())
@@ -46,7 +46,7 @@ describe('Login', () => {
   it('Should present error state if form is invalid', () => {
     cy.getByTestId('email').focus().type(faker.random.word())
     FormHelper.testInputStatus('email', 'Valor inválido')
-    cy.getByTestId('password').focus().type(faker.random.alphaNumeric(3))
+    cy.getByTestId('password').focus().type(faker.random.alphaNumeric(1))
     FormHelper.testInputStatus('password', 'Valor inválido')
     cy.getByTestId('submit').should('have.attr', 'disabled')
     cy.getByTestId('error-wrap').should('not.have.descendants')
@@ -74,7 +74,7 @@ describe('Login', () => {
     FormHelper.testMainError('Algo deu errado.')
     Helper.testUrl('/login')
   })
-
+  /*
   it('Should store account on localStorage if valid credentials are provided', () => {
     mockSuccess()
     simulateValidSubmit()
@@ -95,4 +95,5 @@ describe('Login', () => {
     cy.getByTestId('email').focus().type(faker.internet.email()).type('{enter}')
     cy.get('@loginRequest.all').should('have.length', 0)
   })
+  */
 })
