@@ -2,7 +2,9 @@ import {
   HttpPostClient,
   HttpPostParams,
   HttpResponse,
-  HttpStatusCode
+  HttpStatusCode,
+  HttpGetClient,
+  HttpGetParams
 } from '@/data/protocols/http'
 import faker from 'faker'
 
@@ -22,5 +24,12 @@ export class HttpPostClientSpy<R> implements HttpPostClient<R> {
     this.url = params.url
     this.body = params.body
     return await Promise.resolve(this.response)
+  }
+}
+
+export class HttpGetClientSpy implements HttpGetClient {
+  url: string
+  async get(params: HttpGetParams): Promise<void> {
+    this.url = params.url
   }
 }
