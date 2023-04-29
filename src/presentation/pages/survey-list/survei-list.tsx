@@ -4,9 +4,9 @@ import { Footer, Logo } from '@/presentation/components'
 
 const SurveyList: React.FC = () => {
   return (
-    <div className={Styles.SurveyListWrap}>
-      <header className={Styles.SurveyheaderWrap}>
-        <div className={Styles.SurveyheaderContent}>
+    <div className={Styles.surveyListWrap}>
+      <header className={Styles.headerWrap}>
+        <div className={Styles.headerContent}>
           <Logo />
           <div className={Styles.logoutWrap}>
             <span>Jean</span>
